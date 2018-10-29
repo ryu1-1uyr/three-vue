@@ -3,11 +3,14 @@
 
     <div class="controller">
       <!-- .numberをつけておくことで、valueを自動的に数値に変換してくれる -->
-      <input v-model.number="speed" type="number">
+      <input type="button" v-on:="change_x_y">
+      <input v-if="test" v-model.number="speed" type="number">
+      <p v-else="test" >false desu</p>
       <input v-model="color" >
       x:<input v-model="x_scale" type="number" >
       y:<input v-model="y_scale" type="number" >
       z:<input v-model="z_scale" type="number" >
+
     </div>
 
     <div class="stage">
@@ -58,6 +61,8 @@
         x_scale: 1,
         y_scale: 1,
         z_scale: 1,
+
+        test: true ,
       }
     },
 
@@ -89,6 +94,17 @@
         this.cube.material.color.setHex(this.color);
 
         this.renderer.render(this.scene, this.camera);
+      },
+      change_x_y () {
+
+        if(this.test){
+          this.test = false ;
+          console.log("false");
+        }else {
+          this.test = true ;
+          onsole.log("true");
+        }
+
       }
 
     },
