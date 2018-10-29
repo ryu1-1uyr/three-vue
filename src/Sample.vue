@@ -3,9 +3,11 @@
 
     <div class="controller">
       <!-- .numberをつけておくことで、valueを自動的に数値に変換してくれる -->
-      <input type="button" v-on:="change_x_y">
-      <input v-if="test" v-model.number="speed" type="number">
-      <p v-else="test" >false desu</p>
+      <input type="button" v-on:click="change_x_y">
+      <input  v-model.number="speed" type="number">
+      <input  v-model.number="speed" type="number">
+      <p v-if="test">true</p>
+      <p v-else="test" >false</p>
       <input v-model="color" >
       x:<input v-model="x_scale" type="number" >
       y:<input v-model="y_scale" type="number" >
@@ -21,7 +23,17 @@
 </template>
 
 <script>
+
+
   import * as THREE from 'three';
+
+  const rotate = (speed) => {
+    if (speed === '') {
+      return 0
+    } else {
+      return speed
+    }
+  }
 
   export default {
 
@@ -56,13 +68,13 @@
         light: light,
         cube: cube,
 
-        speed: 0.05, // データバインディングできるようにする
+        speed: 0.03, // データバインディングできるようにする
         color: 0x123456,
         x_scale: 1,
         y_scale: 1,
         z_scale: 1,
 
-        test: true ,
+        test: false  ,
       }
     },
 
@@ -84,8 +96,8 @@
       animate () {
         requestAnimationFrame( this.animate );
 
-        this.cube.rotation.x += this.rotate; // computed.rotate
-        this.cube.rotation.y += this.rotate;
+        this.cube.rotation.x += rotate(this.speed); // computed.rotate
+        this.cube.rotation.y += rotate(this.speed);
 
         this.cube.scale.x = this.x_scale;
         this.cube.scale.y = this.y_scale;
@@ -95,32 +107,16 @@
 
         this.renderer.render(this.scene, this.camera);
       },
-      change_x_y () {
-
+      change_x_y  () {
         if(this.test){
           this.test = false ;
-          console.log("false");
         }else {
           this.test = true ;
-          onsole.log("true");
         }
-
       }
 
     },
 
-    computed: {
-
-          rotate () {
-            // inputに何も入力されていないときに''で認識されてしまうため、回避
-            if (this.speed === '') {
-              return 0;
-            } else {
-              return this.speed;
-            }
-          }
-
-      }
 
   }
 </script>
