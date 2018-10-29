@@ -2,12 +2,10 @@
   <div>
 
     <div class="controller">
-      <!-- .numberをつけておくことで、valueを自動的に数値に変換してくれる -->
+
       <input type="button" v-on:click="change_x_y">
-      <input  v-model.number="speed" type="number">
-      <input  v-model.number="speed" type="number">
-      <p v-if="test">true</p>
-      <p v-else="test" >false</p>
+      <input v-if="test"   v-model.number="speed" type="number" placeholder="x rotate speed">
+      <input v-else="test" v-model.number="speed" type="number" placeholder="y rotate speed">
       <input v-model="color" >
       x:<input v-model="x_scale" type="number" >
       y:<input v-model="y_scale" type="number" >
@@ -33,7 +31,7 @@
     } else {
       return speed
     }
-  }
+  };
 
   export default {
 
@@ -96,8 +94,16 @@
       animate () {
         requestAnimationFrame( this.animate );
 
-        this.cube.rotation.x += rotate(this.speed); // computed.rotate
-        this.cube.rotation.y += rotate(this.speed);
+         // computed.rotate
+
+
+        if (this.test) {
+          this.cube.rotation.x += rotate(this.speed);
+        } else {
+          this.cube.rotation.y += rotate(this.speed);
+        }
+
+        // rotateDivider(this.test)(this.cube.rotation.x)(this.cube.rotation.y)(rotate(this.speed))
 
         this.cube.scale.x = this.x_scale;
         this.cube.scale.y = this.y_scale;
