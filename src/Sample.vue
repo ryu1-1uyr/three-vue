@@ -6,6 +6,8 @@
       <input v-model.number="speed" type="number">
       <input v-model="color" >
       x:<input v-model="x_scale" type="number" >
+      y:<input v-model="y_scale" type="number" >
+      z:<input v-model="z_scale" type="number" >
     </div>
 
     <div class="stage">
@@ -53,7 +55,9 @@
 
         speed: 0.05, // データバインディングできるようにする
         color: 0x123456,
-        x_scale: 1
+        x_scale: 1,
+        y_scale: 1,
+        z_scale: 1,
       }
     },
 
@@ -79,6 +83,8 @@
         this.cube.rotation.y += this.rotate;
 
         this.cube.scale.x = this.x_scale;
+        this.cube.scale.y = this.y_scale;
+        this.cube.scale.z = this.z_scale;
 
         this.cube.material.color.setHex(this.color);
 
