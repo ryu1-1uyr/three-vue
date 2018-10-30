@@ -4,8 +4,8 @@
     <div class="controller">
 
       <input type="button" v-on:click="change_x_y"　value="swhich X <=> Y">
-      <div v-if="test">now X</div>
-      <div v-else="test">now Y</div> <br>
+      <div v-if="test">now Y</div>
+      <div v-else="test">now X</div> <br>
       <input v-if="test"   v-model.number="speed" type="number" placeholder="x rotate speed">
       <input v-else="test" v-model.number="speed" type="number" placeholder="y rotate speed">
       <input v-model="color" >
@@ -53,7 +53,7 @@
 
       // === light ===
       const light = new THREE.DirectionalLight(0xffffff);
-      light.position.set(0, 0, 10);
+      light.position.set(10, 0, 30);
 
       // === model ===
       const geometry = new THREE.BoxGeometry (1, 1, 1);
@@ -68,8 +68,9 @@
         light: light,
         cube: cube,
 
-        speed: 0.03, // データバインディングできるようにする
-        color: 0x123456,
+        speed: 0.03,
+        // tmp_speed : 0,
+        color: 0x54321,
         x_scale: 1,
         y_scale: 1,
         z_scale: 1,
@@ -97,7 +98,7 @@
         requestAnimationFrame( this.animate );
 
          // computed.rotate
-
+         //trueならxのスピードを変更し、yのスピードを保持し、falseならその逆の動作を行う関数がほしい
 
         if (this.test) {
           this.cube.rotation.x += rotate(this.speed);
