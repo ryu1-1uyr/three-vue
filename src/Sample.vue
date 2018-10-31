@@ -4,6 +4,7 @@
     <div class="controller">
 
       <input type="button" v-on:click="change_x_y"　value="swhich X <=> Y">
+      <input type="button" v-on:click="move">
       <div v-if="test">now Y</div>
       <div v-else="test">now X</div> <br>
       <input v-if="test"   v-model.number="speed" type="number" placeholder="x rotate speed">
@@ -16,7 +17,7 @@
     </div>
 
     <div class="stage">
-      <div ref="stage"></div>
+      <div ref="stage" v-on:click="move"></div>
     </div>
 
   </div>
@@ -126,6 +127,9 @@
         }else {
           this.test = true ;
         }
+      },
+      move () {
+        window.addEventListener('click',()=>{console.log("click!")},false)
       }
 
     },
