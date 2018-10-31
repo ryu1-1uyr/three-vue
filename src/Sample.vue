@@ -53,7 +53,10 @@
 
       // === light ===
       const light = new THREE.DirectionalLight(0xffffff);
-      light.position.set(10, 0, 30);
+      light.position.set(1, -10, 5);
+
+      const light2 = new THREE.DirectionalLight(0xffffff);
+      light2.position.set(2, 8, 10);
 
       // === model ===
       const geometry = new THREE.BoxGeometry (1, 1, 1);
@@ -66,6 +69,7 @@
         renderer: renderer,
         camera: camera,
         light: light,
+        light2: light2,
         cube: cube,
 
         speed: 0.03,
@@ -83,6 +87,7 @@
       // === sceneにmodel,light, cameraを追加 ===
       this.scene.add( this.camera );
       this.scene.add( this.light);
+      this.scene.add( this.light2);
       this.scene.add( this.cube );
     },
 
