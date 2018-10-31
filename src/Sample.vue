@@ -27,6 +27,9 @@
 
 
   import * as THREE from 'three';
+  import * as OrbitControls from 'three-orbitcontrols'
+
+
 
   const rotate = (speed) => {
     if (speed === '') {
@@ -52,6 +55,13 @@
       const camera = new THREE.PerspectiveCamera (75, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 5;
 
+      // const renderer = new THREE.WebGLRenderer({ canvas })
+
+      const controls = new OrbitControls(camera, renderer.domElement)
+      controls.enableDamping = true
+      controls.dampingFactor = 0.25
+      controls.enableZoom = false
+
       // === light ===
       const light = new THREE.DirectionalLight(0xffffff);
       light.position.set(1, -10, 5);
@@ -63,6 +73,11 @@
       const geometry = new THREE.BoxGeometry (1, 1, 1);
       const material = new THREE.MeshStandardMaterial ({ color: 0x123456 });
       const cube = new THREE.Mesh (geometry, material);
+
+
+
+
+
 
 
       return {
