@@ -66,7 +66,21 @@
 
 
       return {
+        scene: scene,
+        renderer: renderer,
+        camera: camera,
+        light: light,
+        light2: light2,
+        cube: cube,
 
+        speed: 0.03,
+        // tmp_speed : 0,
+        color: 0xffffff,
+        x_scale: 1,
+        y_scale: 1,
+        z_scale: 1,
+
+        test: false  ,
       }
     },
 
