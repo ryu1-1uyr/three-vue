@@ -66,21 +66,7 @@
 
 
       return {
-        scene: scene,
-        renderer: renderer,
-        camera: camera,
-        light: light,
-        light2: light2,
-        cube: cube,
 
-        speed: 0.03,
-        // tmp_speed : 0,
-        color: 0x54321,
-        x_scale: 1,
-        y_scale: 1,
-        z_scale: 1,
-
-        test: false  ,
       }
     },
 
@@ -116,6 +102,7 @@
         this.cube.scale.x = this.x_scale;
         this.cube.scale.y = this.y_scale;
         this.cube.scale.z = this.z_scale;
+        // console.log(this.cube.position)
 
         this.cube.material.color.setHex(this.color);
 
@@ -128,8 +115,8 @@
           this.test = true ;
         }
       },
-      move () {
-        window.addEventListener('click',()=>{console.log("click!")},false)
+      move (event) {
+        console.log(event.screenX,event.screenY)
       }
 
     },
